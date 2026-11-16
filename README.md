@@ -16,7 +16,7 @@ A modern, fast, mobile-responsive multi-page website built with **React**, **Vit
 
 ## ✨ Features
 
-- **Multi-Page Architecture:**
+- **Multi-Page Architecture (9 Distinct Pages):**
   - `Home (/)`: Hero section, 24/7 emergency notice, "Why Choose Syd's Plumbing?", core solutions preview, community service coverage, verified customer reviews, and quick dispatch card.
   - `Services (/services)`: Complete catalog of professional residential and light commercial plumbing solutions, 4-step quality process, and FAQ accordion.
   - `Dedicated Service Pages (/services/:slug)`:
@@ -26,7 +26,9 @@ A modern, fast, mobile-responsive multi-page website built with **React**, **Vit
     - `/services/fixtures-faucets`: Faucets, sinks, toilets, showerheads, and garbage disposals.
   - `About Syd's (/about)`: Company history, independent local values, commitment to integrity and community trust, and the independent vs. corporate difference.
   - `Contact & Booking (/contact)`: Direct click-to-call cards, service profile details, hours, and interactive quote/booking request form.
+  - `About & Contact Document View (/about-contact)`: Dedicated page mirroring Section 3 of the blueprint specification directly.
   - `404 Not Found (*)`: Friendly branded error screen with return home navigation.
+  - **Interactive Multi-Page Pagination Bar:** Next / Previous page switches and interactive pill bar on every single page.
 - **Custom Designed Logo & Favicon:**
   - Modern vector SVG emblem combining an interlocking pipe wrench and water droplet with clean gradients and typography.
   - Included as SVG assets (`public/logo.svg`, `public/favicon.svg`) and reusable React component (`src/components/Logo.jsx`).
