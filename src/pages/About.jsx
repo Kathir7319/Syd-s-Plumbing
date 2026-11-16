@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import Logo from '../components/Logo';
 import { BUSINESS_INFO } from '../data/servicesData';
+import PageNavigation from '../components/PageNavigation';
 
 export default function About({ onOpenQuote }) {
   return (
@@ -266,6 +267,11 @@ export default function About({ onOpenQuote }) {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Multi-Page Navigation Bar */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <PageNavigation current="/about" />
       </section>
     </div>
   );

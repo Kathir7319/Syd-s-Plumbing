@@ -12,6 +12,7 @@ import {
   MessageSquare
 } from 'lucide-react';
 import { BUSINESS_INFO, SERVICES_DATA } from '../data/servicesData';
+import PageNavigation from '../components/PageNavigation';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -322,6 +323,11 @@ export default function Contact() {
           </div>
 
         </div>
+      </section>
+
+      {/* Multi-Page Navigation Bar */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <PageNavigation current="/contact" />
       </section>
     </div>
   );

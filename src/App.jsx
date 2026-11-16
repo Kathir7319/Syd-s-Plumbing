@@ -10,6 +10,7 @@ import Services from './pages/Services';
 import ServiceDetail from './pages/ServiceDetail';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import AboutContact from './pages/AboutContact';
 import NotFound from './pages/NotFound';
 import { Phone } from 'lucide-react';
 import { BUSINESS_INFO } from './data/servicesData';
@@ -27,7 +28,7 @@ export default function App() {
         {/* Top Emergency Dispatch Notification */}
         <EmergencyBanner />
 
-        {/* Global Navigation Header */}
+        {/* Global Multi-Page Navigation Header */}
         <Navbar onOpenQuote={handleOpenQuote} />
 
         {/* Main Routed Content */}
@@ -38,6 +39,7 @@ export default function App() {
             <Route path="/services/:slug" element={<ServiceDetail onOpenQuote={handleOpenQuote} />} />
             <Route path="/about" element={<About onOpenQuote={handleOpenQuote} />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/about-contact" element={<AboutContact onOpenQuote={handleOpenQuote} />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

@@ -16,9 +16,12 @@ import {
   Sparkles,
   ChevronRight,
   HelpCircle,
-  ThumbsUp
+  ThumbsUp,
+  Layers,
+  FileText
 } from 'lucide-react';
 import { BUSINESS_INFO, SERVICES_DATA, WHY_CHOOSE_US, TESTIMONIALS } from '../data/servicesData';
+import PageNavigation from '../components/PageNavigation';
 
 export default function Home({ onOpenQuote }) {
   // Service icon resolver
@@ -460,6 +463,13 @@ export default function Home({ onOpenQuote }) {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* MULTI-PAGE DIRECTORY & PAGE SWITCHER                         */}
+      {/* ============================================================ */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <PageNavigation current="/" />
       </section>
 
       {/* ============================================================ */}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Phone, Menu, X, ChevronDown, Wrench, Shield, Clock, MapPin, Sparkles } from 'lucide-react';
+import { Phone, Menu, X, ChevronDown, Wrench, Shield, Clock, MapPin, Sparkles, BookOpen, Layers } from 'lucide-react';
 import Logo from './Logo';
 import { BUSINESS_INFO, SERVICES_DATA } from '../data/servicesData';
 
@@ -30,15 +30,15 @@ export default function Navbar({ onOpenQuote }) {
   }, []);
 
   const navLinkStyle = ({ isActive }) =>
-    `relative px-3.5 py-2 font-semibold text-sm transition-colors rounded-lg ${
+    `relative flex items-center gap-1.5 px-3.5 py-2 font-bold text-sm transition-all rounded-xl ${
       isActive
-        ? 'text-sky-600 bg-sky-50/80 font-bold'
-        : 'text-slate-700 hover:text-sky-600 hover:bg-slate-50'
+        ? 'text-sky-700 bg-sky-100/80 shadow-sm border border-sky-200'
+        : 'text-slate-700 hover:text-sky-600 hover:bg-slate-100'
     }`;
 
   return (
     <header className={`sticky top-0 z-40 w-full transition-all duration-300 ${
-      isScrolled ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-slate-200/80' : 'bg-white border-b border-slate-100 shadow-sm'
+      isScrolled ? 'bg-white/98 backdrop-blur-md shadow-md border-b border-slate-200' : 'bg-white border-b border-slate-200 shadow-sm'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -47,13 +47,19 @@ export default function Navbar({ onOpenQuote }) {
             <Logo size="md" />
           </div>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center space-x-1">
+          {/* Desktop Multi-Page Navigation Bar */}
+          <nav className="hidden lg:flex items-center space-x-1.5 bg-slate-50 p-1.5 rounded-2xl border border-slate-200">
+            {/* Page 1: Home */}
             <NavLink to="/" end className={navLinkStyle}>
-              Home
+              {({ isActive }) => (
+                <>
+                  <span className={`w-2 h-2 rounded-full ${isActive ? 'bg-sky-500 animate-pulse' : 'bg-transparent'}`}></span>
+                  <span>Home</span>
+                </>
+              )}
             </NavLink>
 
-            {/* Services Dropdown */}
+            {/* Page 2: Services Dropdown */}
             <div
               className="relative"
               onMouseEnter={() => setServicesDropdown(true)}
@@ -62,30 +68,36 @@ export default function Navbar({ onOpenQuote }) {
               <NavLink
                 to="/services"
                 className={({ isActive }) =>
-                  `flex items-center gap-1.5 px-3.5 py-2 font-semibold text-sm transition-colors rounded-lg ${
+                  `flex items-center gap-1.5 px-3.5 py-2 font-bold text-sm transition-all rounded-xl ${
                     isActive
-                      ? 'text-sky-600 bg-sky-50/80 font-bold'
-                      : 'text-slate-700 hover:text-sky-600 hover:bg-slate-50'
+                      ? 'text-sky-700 bg-sky-100/80 shadow-sm border border-sky-200'
+                      : 'text-slate-700 hover:text-sky-600 hover:bg-slate-100'
                   }`
                 }
               >
-                <span>Services</span>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${servicesDropdown ? 'rotate-180 text-sky-600' : 'text-slate-400'}`} />
+                {({ isActive }) => (
+                  <>
+                    <span className={`w-2 h-2 rounded-full ${isActive ? 'bg-sky-500 animate-pulse' : 'bg-transparent'}`}></span>
+                    <span>Services</span>
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${servicesDropdown ? 'rotate-180 text-sky-600' : 'text-slate-400'}`} />
+                  </>
+                )}
               </NavLink>
 
-              {/* Flyout Menu */}
+              {/* Flyout Sub-menu for dedicated service pages */}
               {servicesDropdown && (
                 <div className="absolute top-full left-0 w-80 pt-2 z-50">
-                  <div className="bg-white rounded-2xl shadow-xl border border-slate-100 p-2.5 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150">
-                    <div className="px-3 py-2 text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100">
-                      Morrisville Plumbing Solutions
+                  <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-2.5 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150">
+                    <div className="px-3 py-2 text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100 flex items-center justify-between">
+                      <span>Dedicated Service Pages</span>
+                      <span className="text-sky-600 font-extrabold text-[10px]">4 Pages</span>
                     </div>
                     <div className="mt-1 space-y-1">
                       {SERVICES_DATA.map((service) => (
                         <Link
                           key={service.slug}
                           to={`/services/${service.slug}`}
-                          className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-sky-50/70 transition-colors group"
+                          className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-sky-50 transition-colors group"
                         >
                           <div className="w-8 h-8 rounded-lg bg-sky-100 text-sky-600 flex items-center justify-center flex-shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-colors">
                             <Wrench className="w-4 h-4" />
@@ -106,7 +118,7 @@ export default function Navbar({ onOpenQuote }) {
                         to="/services"
                         className="block text-center text-xs font-bold text-sky-600 hover:text-sky-700 py-1.5 rounded-lg hover:bg-sky-50 transition-colors"
                       >
-                        Explore All Solutions &rarr;
+                        View Full Services Overview &rarr;
                       </Link>
                     </div>
                   </div>
@@ -114,12 +126,35 @@ export default function Navbar({ onOpenQuote }) {
               )}
             </div>
 
+            {/* Page 3: About Syd's */}
             <NavLink to="/about" className={navLinkStyle}>
-              About Syd&apos;s
+              {({ isActive }) => (
+                <>
+                  <span className={`w-2 h-2 rounded-full ${isActive ? 'bg-sky-500 animate-pulse' : 'bg-transparent'}`}></span>
+                  <span>About Syd&apos;s</span>
+                </>
+              )}
             </NavLink>
 
+            {/* Page 4: Contact & Booking */}
             <NavLink to="/contact" className={navLinkStyle}>
-              Contact &amp; Booking
+              {({ isActive }) => (
+                <>
+                  <span className={`w-2 h-2 rounded-full ${isActive ? 'bg-sky-500 animate-pulse' : 'bg-transparent'}`}></span>
+                  <span>Contact &amp; Booking</span>
+                </>
+              )}
+            </NavLink>
+
+            {/* Blueprint Combined Page 3 */}
+            <NavLink to="/about-contact" className={navLinkStyle}>
+              {({ isActive }) => (
+                <>
+                  <span className={`w-2 h-2 rounded-full ${isActive ? 'bg-sky-500 animate-pulse' : 'bg-transparent'}`}></span>
+                  <span className="text-[10px] bg-amber-100 text-amber-900 px-1.5 py-0.5 rounded font-black mr-0.5">DOC</span>
+                  <span>About &amp; Contact</span>
+                </>
+              )}
             </NavLink>
           </nav>
 
@@ -177,36 +212,45 @@ export default function Navbar({ onOpenQuote }) {
       {isOpen && (
         <div className="lg:hidden border-t border-slate-200 bg-white/98 backdrop-blur-xl animate-in slide-in-from-top-4 duration-200 shadow-2xl">
           <div className="px-4 pt-3 pb-6 space-y-2">
+            <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider px-3 py-1">
+              Multi-Page Navigation (Select Page)
+            </div>
+
             <NavLink
               to="/"
               end
               className={({ isActive }) =>
-                `block px-4 py-3 rounded-xl text-base font-bold transition-colors ${
-                  isActive ? 'bg-sky-50 text-sky-600' : 'text-slate-800 hover:bg-slate-50'
+                `flex items-center justify-between px-4 py-3 rounded-xl text-base font-bold transition-colors ${
+                  isActive ? 'bg-sky-50 text-sky-600 border border-sky-200' : 'text-slate-800 hover:bg-slate-50'
                 }`
               }
             >
-              Home
+              <span>Page 1: Home</span>
+              <span className="text-xs text-slate-400">Overview</span>
             </NavLink>
 
             <NavLink
               to="/services"
               className={({ isActive }) =>
-                `block px-4 py-3 rounded-xl text-base font-bold transition-colors ${
-                  isActive ? 'bg-sky-50 text-sky-600' : 'text-slate-800 hover:bg-slate-50'
+                `flex items-center justify-between px-4 py-3 rounded-xl text-base font-bold transition-colors ${
+                  isActive ? 'bg-sky-50 text-sky-600 border border-sky-200' : 'text-slate-800 hover:bg-slate-50'
                 }`
               }
             >
-              All Services
+              <span>Page 2: Services</span>
+              <span className="text-xs text-slate-400">All Solutions</span>
             </NavLink>
 
             {/* Sub-services list in mobile menu */}
-            <div className="pl-4 space-y-1">
+            <div className="pl-6 space-y-1 py-2 bg-slate-50 rounded-xl">
+              <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-3 pb-1">
+                4 Dedicated Service Sub-Pages:
+              </div>
               {SERVICES_DATA.map((s) => (
                 <Link
                   key={s.slug}
                   to={`/services/${s.slug}`}
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-sky-600 hover:bg-sky-50/50"
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-sky-600 hover:bg-sky-50"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
                   <span>{s.title}</span>
@@ -217,23 +261,37 @@ export default function Navbar({ onOpenQuote }) {
             <NavLink
               to="/about"
               className={({ isActive }) =>
-                `block px-4 py-3 rounded-xl text-base font-bold transition-colors ${
-                  isActive ? 'bg-sky-50 text-sky-600' : 'text-slate-800 hover:bg-slate-50'
+                `flex items-center justify-between px-4 py-3 rounded-xl text-base font-bold transition-colors ${
+                  isActive ? 'bg-sky-50 text-sky-600 border border-sky-200' : 'text-slate-800 hover:bg-slate-50'
                 }`
               }
             >
-              About Syd&apos;s
+              <span>Page 3: About Syd&apos;s</span>
+              <span className="text-xs text-slate-400">Local Story</span>
             </NavLink>
 
             <NavLink
               to="/contact"
               className={({ isActive }) =>
-                `block px-4 py-3 rounded-xl text-base font-bold transition-colors ${
-                  isActive ? 'bg-sky-50 text-sky-600' : 'text-slate-800 hover:bg-slate-50'
+                `flex items-center justify-between px-4 py-3 rounded-xl text-base font-bold transition-colors ${
+                  isActive ? 'bg-sky-50 text-sky-600 border border-sky-200' : 'text-slate-800 hover:bg-slate-50'
                 }`
               }
             >
-              Contact &amp; Free Estimate
+              <span>Page 4: Contact &amp; Booking</span>
+              <span className="text-xs text-slate-400">Estimate &amp; Call</span>
+            </NavLink>
+
+            <NavLink
+              to="/about-contact"
+              className={({ isActive }) =>
+                `flex items-center justify-between px-4 py-3 rounded-xl text-base font-bold transition-colors ${
+                  isActive ? 'bg-sky-50 text-sky-600 border border-sky-200' : 'text-slate-800 hover:bg-slate-50'
+                }`
+              }
+            >
+              <span>Page 5: About &amp; Contact (Doc View)</span>
+              <span className="text-xs text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded font-black">Blueprint</span>
             </NavLink>
 
             {/* Mobile Actions Container */}

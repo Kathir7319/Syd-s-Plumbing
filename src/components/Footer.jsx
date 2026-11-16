@@ -127,6 +127,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link to="/about-contact" className="text-slate-400 hover:text-sky-400 transition-colors flex items-center gap-1.5">
+                  <span className="text-[10px] bg-amber-400/20 text-amber-300 px-1 rounded font-bold">Doc</span>
+                  <span>About &amp; Contact Page</span>
+                </Link>
+              </li>
+              <li>
                 <a href={`tel:${BUSINESS_INFO.phoneRaw}`} className="text-amber-400 hover:text-amber-300 font-semibold transition-colors">
                   Emergency Dispatch (+1 919-271-0999)
                 </a>

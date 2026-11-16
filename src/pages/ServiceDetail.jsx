@@ -15,6 +15,7 @@ import {
   ChevronRight
 } from 'lucide-react';
 import { SERVICES_DATA, BUSINESS_INFO } from '../data/servicesData';
+import PageNavigation from '../components/PageNavigation';
 
 export default function ServiceDetail({ onOpenQuote }) {
   const { slug } = useParams();
@@ -234,6 +235,11 @@ export default function ServiceDetail({ onOpenQuote }) {
           </div>
 
         </div>
+      </div>
+
+      {/* Multi-Page Navigation Bar */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <PageNavigation current="/services" />
       </div>
     </div>
   );
